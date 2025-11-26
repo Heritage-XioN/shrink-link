@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 
 export default function HeroSectionOne() {
 	return (
-		<div className='relative mx-auto mt-15 mb-10 flex max-w-7xl flex-col items-center justify-center'>
+		<div className='relative mx-auto mt-15 mb-10 flex max-w-7xl flex-col items-center justify-center px-4 md:py-4 md:px-16 '>
 			<div className='md:flex md:flex-wrap px-4 py-10 md:py-20'>
 				<div className='md:grow md:shrink md:basis-auto md:w-1/2'>
 					<h1 className='md:hidden relative z-10 mx-auto max-w-4xl text-center text-2xl font-bold text-slate-700 md:text-4xl lg:text-7xl dark:text-slate-300'>
@@ -69,7 +69,7 @@ export default function HeroSectionOne() {
 							duration: 0.3,
 							delay: 0.8,
 						}}
-						className='hidden md:block relative z-10 mx-auto max-w-xl py-4 lg:py-2 text-center text-lg font-normal text-neutral-600 dark:text-neutral-400'
+						className='hidden md:block relative z-10 mx-auto max-w-[480px] py-4 lg:py-2 text-center text-lg font-normal text-neutral-600 dark:text-neutral-400'
 					>
 						{
 							'Transform long, cumbersome URLs into neat, shareable links instantly.'
