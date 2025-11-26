@@ -1,11 +1,11 @@
 'use client';
-
+import  Image  from 'next/image';
 import { motion } from 'motion/react';
 
 export default function HeroSectionOne() {
 	return (
 		<div className='relative mx-auto mt-15 mb-10 flex max-w-7xl flex-col items-center justify-center'>
-			<div className='absolute inset-y-0 left-0 h-full w-px bg-neutral-200/80 dark:bg-neutral-800/80'>
+			{/* <div className='absolute inset-y-0 left-0 h-full w-px bg-neutral-200/80 dark:bg-neutral-800/80'>
 				<div className='absolute top-0 h-40 w-px bg-gradient-to-b from-transparent via-blue-500 to-transparent' />
 			</div>
 			<div className='absolute inset-y-0 right-0 h-full w-px bg-neutral-200/80 dark:bg-neutral-800/80'>
@@ -13,9 +13,9 @@ export default function HeroSectionOne() {
 			</div>
 			<div className='absolute inset-x-0 bottom-0 h-px w-full bg-neutral-200/80 dark:bg-neutral-800/80'>
 				<div className='absolute mx-auto h-px w-40 bg-gradient-to-r from-transparent via-blue-500 to-transparent' />
-			</div>
-			<div className='lg:flex lg:flex-wrap px-4 py-10 md:py-20'>
-				<div className='lg:grow lg:shrink lg:basis-auto lg:w-1/2'>
+			</div> */}
+			<div className='md:flex md:flex-wrap px-4 py-10 md:py-20'>
+				<div className='md:grow md:shrink md:basis-auto md:w-1/2'>
 					<h1 className='md:hidden relative z-10 mx-auto max-w-4xl text-center text-2xl font-bold text-slate-700 md:text-4xl lg:text-7xl dark:text-slate-300'>
 						{`Shorten. Share. Track.`.split(' ').map((word, index) => (
 							<motion.span
@@ -95,9 +95,9 @@ export default function HeroSectionOne() {
 							duration: 0.3,
 							delay: 1,
 						}}
-						className='relative z-10 mt-8 lg:mt-1 flex flex-wrap items-center justify-center gap-4'
+						className='relative z-10 mt-4 lg:mt-1 flex flex-wrap items-center justify-center gap-4'
 					>
-						<button className='w-60 transform rounded-lg bg-[#A667E4FF] px-6 py-2 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200'>
+						<button className='w-60 transform rounded-lg bg-[#A667E4FF] px-6 py-2 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 gradient dark:bg-white dark:text-black dark:hover:bg-gray-200'>
 							Explore Now
 						</button>
 						<button className='w-60 transform rounded-lg border border-gray-300 bg-white px-6 py-2 font-medium text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 dark:border-gray-700 dark:bg-black dark:text-white dark:hover:bg-gray-900'>
@@ -105,7 +105,7 @@ export default function HeroSectionOne() {
 						</button>
 					</motion.div>
 				</div>
-				<div className='lg:grow lg:shrink lg:basis-auto lg:w-1/2'>
+				<div className='md:grow md:shrink md:basis-auto md:w-1/2'>
 					<motion.div
 						initial={{
 							opacity: 0,
@@ -119,10 +119,10 @@ export default function HeroSectionOne() {
 							duration: 0.3,
 							delay: 1.2,
 						}}
-						className='relative z-10 mt-20 lg:mt-0 rounded-3xl border border-neutral-200 bg-neutral-100 p-4 shadow-md dark:border-neutral-800 dark:bg-neutral-900'
+						className='relative z-10 mt-5 lg:mt-0 rounded-3xl border border-neutral-200 bg-neutral-100 p-4 shadow-md dark:border-neutral-800 dark:bg-neutral-900'
 					>
 						<div className='w-full overflow-hidden rounded-xl border border-gray-300 dark:border-gray-700'>
-							<img
+							<Image
 								src='https://assets.aceternity.com/pro/aceternity-landing.webp'
 								alt='Landing page preview'
 								className='aspect-[16/9] h-auto w-full object-cover'

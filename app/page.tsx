@@ -1,6 +1,12 @@
 import HeroSectionOne from "@/components/hero-section-demo-1";
-import Image from "next/image";
+import Template from "@/components/ui/template";
+
 
 export default function Home() {
-  return <><HeroSectionOne  /></>;
+  return (
+		<div className=''>
+			<HeroSectionOne />
+			<Template />
+		</div>
+	);
 }
