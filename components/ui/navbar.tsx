@@ -9,7 +9,7 @@ import React from 'react'
 
 const Navbar = () => {
   return (
-		<div className='flex justify-between flex-wrap bg-[#A667E4FF] w-full py-6 px-5'>
+		<div className='flex fixed z-50 top-0 justify-between flex-wrap bg-[#A667E4FF] w-full py-6 px-5'>
 			<div className='flex grow shrink basis-auto '>
 				<nav className='h-9 w-9 bg-white rounded mr-2'></nav>
 				<nav className='h-9 flex justify-center items-center'>
