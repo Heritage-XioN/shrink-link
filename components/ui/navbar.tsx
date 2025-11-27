@@ -1,11 +1,4 @@
 import Link from 'next/link';
-import { Menu } from 'lucide-react';
-import {
-	Popover,
-	PopoverContent,
-	PopoverTrigger,
-} from '@/components/ui/popover';
-import React from 'react';
 import Logo from './logo';
 
 const Navbar = () => {
@@ -24,17 +17,7 @@ const Navbar = () => {
 					</Link>
 				</nav>
 			</div>
-			<div className='lg:hidden flex justify-end items-center grow shrink basis-auto '>
-				<div className='h-9 w-9'>
-					<Popover>
-						<PopoverTrigger className=' h-full w-full'>
-							<Menu className='w-full h-full text-white' />
-						</PopoverTrigger>
-						<PopoverContent>Place content for the popover here.</PopoverContent>
-					</Popover>
-				</div>
-			</div>
-			<div className='hidden lg:flex justify-end items-center grow shrink basis-auto'>
+			<div className='hidden md:flex justify-end items-center grow shrink basis-auto'>
 				<div className='flex justify-center items-center w-28 ml-4'>
 					<Link
 						href={'/auth/login'}
