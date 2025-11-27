@@ -3,7 +3,7 @@ import React from 'react';
 
 const SectionFour = () => {
 	return (
-		<div className='px-8 mb-96 md:py-4 md:px-20 md:my-10 mt-12'>
+		<div className='px-8 md:py-4 md:px-20 md:my-10 mt-12'>
 			<div className='w-full bg-[#A667E41A] rounded-3xl shadow p-6 md:px-12 md:py-24 flex flex-wrap md:bg-[#A667E4FF]'>
 				<div className='grow shrink basis-auto my-4 flex justify-center items-center'>
 					<h1 className='text-2xl leading-8 font-bold text-[#A667E4FF] text-center md:text-4xl md:leading-10 md:text-[#FFFFFFFF]'>
