@@ -1,6 +1,7 @@
 'use client';
 import  Image  from 'next/image';
 import { motion } from 'motion/react';
+import Link from 'next/link';
 
 export default function HeroSectionOne() {
 	return (
@@ -69,7 +70,7 @@ export default function HeroSectionOne() {
 							duration: 0.3,
 							delay: 0.8,
 						}}
-						className='hidden md:block relative z-10 mx-auto max-w-[480px] py-4 lg:py-2 text-center text-lg font-normal text-neutral-600 dark:text-neutral-400'
+						className='hidden md:block relative z-10 mx-auto max-w-[480px] py-4 lg:py-2 text-center text-lg font-normal text-neutral-600 dark:text-neutral-400 md:mb-10'
 					>
 						{
 							'Transform long, cumbersome URLs into neat, shareable links instantly.'
@@ -88,9 +89,12 @@ export default function HeroSectionOne() {
 						}}
 						className='relative z-10 mt-4 lg:mt-1 flex flex-wrap items-center justify-center gap-4'
 					>
-						<button className='w-60 transform rounded-lg bg-[#A667E4FF] px-6 py-2 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 gradient dark:bg-white dark:text-black dark:hover:bg-gray-200'>
+						<Link
+							href={'/auth/signup'}
+							className='vibrate-1 w-60 transform rounded-lg bg-[#A667E4FF] px-6 py-2 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 gradient dark:bg-white dark:text-black dark:hover:bg-gray-200 text-center'
+						>
 							Explore Now
-						</button>
+						</Link>
 						<button className='w-60 transform rounded-lg border border-gray-300 bg-white px-6 py-2 font-medium text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 dark:border-gray-700 dark:bg-black dark:text-white dark:hover:bg-gray-900'>
 							Contact Us
 						</button>
@@ -110,13 +114,13 @@ export default function HeroSectionOne() {
 							duration: 0.3,
 							delay: 1.2,
 						}}
-						className='relative z-10 mt-5 lg:mt-0 rounded-3xl border border-neutral-200 bg-neutral-100 p-4 shadow-md dark:border-neutral-800 dark:bg-neutral-900'
+						className='relative z-10 mt-5 lg:mt-0 rounded-3xl bg-neutral-100 shadow-md dark:bg-neutral-900'
 					>
-						<div className='w-full overflow-hidden rounded-xl border border-gray-300 dark:border-gray-700'>
+						<div className='w-full overflow-hidden rounded-xl'>
 							<Image
-								src='https://assets.aceternity.com/pro/aceternity-landing.webp'
-								alt='Landing page preview'
-								className='aspect-[16/9] h-auto w-full object-cover'
+								src='https://res.cloudinary.com/ddg2pxgz0/image/upload/v1764252875/A_modern_tech-themed_cnayl3.png'
+								alt='A_modern_tech-themed_cnayl3.png'
+								className=' h-auto w-full object-contain'
 								height={1000}
 								width={1000}
 							/>

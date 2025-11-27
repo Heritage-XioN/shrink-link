@@ -10,7 +10,7 @@ const Footer = () => {
 				<div className='flex justify-center items-center md:justify-start md:items-start'>
 					<div className='flex justify-center items-center'>
 						<div className='w-9 h-9 mr-2 bg-[#A667E4FF] flex justify-center items-center rounded-[7px]'>
-							<Logo />
+							<Logo style='text-[#FFFFFFFF]' />
 						</div>
 						<div className=''>
 							<h1 className='text-[23px] leading-[23px] font-bold text-[#A667E4FF]'>
