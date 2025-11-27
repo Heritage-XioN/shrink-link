@@ -2,10 +2,10 @@ import { ClipboardPaste, Copy, Zap, Globe } from 'lucide-react';
 
 const SectionThree = () => {
 	return (
-		<div className='px-8 mb-96 md:py-4 md:px-20 md:my-10'>
+		<div className='px-8 mt-12 md:py-4 md:px-20 md:my-10'>
 			<div className='w-full'>
 				<div className='grow shrink basis-auto my-4'>
-					<h1 className='text-2xl font-bold leading-[30px] text-[#171A1FFF] text-center'>
+					<h1 className='text-2xl font-bold leading-[30px] md:text-4xl md:leading-10 text-[#171A1FFF] text-center'>
 						How It Works
 					</h1>
 				</div>
