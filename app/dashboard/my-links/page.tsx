@@ -1,19 +1,18 @@
 import ShortenUrl from '@/components/shortenUrl';
 import ShortUrls from '@/components/shortUrls';
-
-import React from 'react';
+import React from 'react'
 
 const Page = () => {
-	return (
+  return (
 		<div>
 			<ShortenUrl
-				header='Shorten Your Link'
+				header='search for Your Link'
 				placeholder='https://example.com/very/long/url'
-				buttonText='Shorten URL'
+				buttonText='search URL'
 			/>
 			<ShortUrls />
 		</div>
 	);
-};
+}
 
-export default Page;
+export default Page

@@ -18,12 +18,12 @@ import Logo from './logo';
 const items = [
 	{
 		title: 'Dashboard',
-		url: '#',
+		url: '/dashboard',
 		icon: Home,
 	},
 	{
 		title: 'My Links',
-		url: '#',
+		url: '/dashboard/my-links',
 		icon: NextLink,
 	},
 	{
