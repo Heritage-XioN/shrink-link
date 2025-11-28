@@ -1,9 +1,9 @@
 import HeroSectionOne from "@/components/hero-section-demo-1";
 import Footer from "@/components/ui/footer";
 import Navbar from "@/components/ui/navbar";
-import SectionFour from "@/components/ui/section-four";
-import SectionThree from "@/components/ui/section-three";
-import SectionTwo from "@/components/ui/section-two";
+import SectionFour from "@/components/section-four";
+import SectionThree from "@/components/section-three";
+import SectionTwo from "@/components/section-two";
 
 
 

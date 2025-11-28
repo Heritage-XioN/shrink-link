@@ -1,13 +1,15 @@
-import ShortenUrl from '@/components/ui/shortenUrl';
+import ShortenUrl from '@/components/shortenUrl';
+import ShortUrls from '@/components/shortUrls';
 
-import React from 'react'
+import React from 'react';
 
 const Page = () => {
-  return (
+	return (
 		<div>
 			<ShortenUrl />
+			<ShortUrls />
 		</div>
 	);
-}
+};
 
-export default Page
+export default Page;
