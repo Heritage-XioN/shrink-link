@@ -1,10 +1,12 @@
+import ShortenUrl from '@/components/ui/shortenUrl';
 import { SidebarTrigger } from '@/components/ui/sidebar';
 import React from 'react'
 
 const Page = () => {
   return (
 		<div>
-			Page <SidebarTrigger className='' />
+			<SidebarTrigger className='md:hidden' />
+			<ShortenUrl />
 		</div>
 	);
 }

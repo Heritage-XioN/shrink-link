@@ -13,7 +13,7 @@ export default function RootLayout({
 			<SidebarProvider>
 				<AppSidebar />
 				<DashNav />
-				<div className='py-8 px-8'>{children}</div>
+				<div className='pt-14 px-8 w-full'>{children}</div>
 				<DashFooter />
 			</SidebarProvider>
 		</main>
