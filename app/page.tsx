@@ -1,3 +1,4 @@
+"use cache"
 import HeroSectionOne from "@/components/hero-section-demo-1";
 import Footer from "@/components/ui/footer";
 import Navbar from "@/components/ui/navbar";
@@ -7,7 +8,7 @@ import SectionTwo from "@/components/section-two";
 
 
 
-export default function Home() {
+export default async function Home() {
   return (
 		<div className=''>
 			<Navbar />

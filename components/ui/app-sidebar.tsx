@@ -1,3 +1,4 @@
+"use client"
 import { Home, Link as NextLink, LogOut } from 'lucide-react';
 import Link from "next/link";
 
@@ -13,6 +14,7 @@ import {
 	SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import Logo from './logo';
+
 
 // Menu items.
 const items = [
@@ -53,10 +55,10 @@ export function AppSidebar() {
 								>
 									<SidebarMenuButton
 										asChild
-										className='hover:active:text-[#A667E4FF] hover:text-[#A667E4FF] hover:active:bg-[#E9D7FFFF] hover:bg-[#E9D7FFFF] '
+										className={`hover:active:text-[#A667E4FF] hover:text-[#A667E4FF] hover:active:bg-[#E9D7FFFF] hover:bg-[#E9D7FFFF]`}
 									>
 										<Link
-											className='hover:active:text-[#A667E4FF] hover:text-[#A667E4FF] hover:active:bg-[#E9D7FFFF] hover:bg-[#E9D7FFFF] '
+											className={`hover:active:text-[#A667E4FF] hover:text-[#A667E4FF] hover:active:bg-[#E9D7FFFF] hover:bg-[#E9D7FFFF]`}
 											href={item.url}
 										>
 											<item.icon />
