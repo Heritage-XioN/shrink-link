@@ -106,7 +106,7 @@ export function LoginForm({
 							</FieldSeparator>
 							{state && (
 								<div
-									className={`mt-4 text-center font-semibold ${
+									className={`${
 										state.status === 'success'
 											? 'bg-[#dcfce7] border-l-3 border-l-[#22c55e] border-r-3 border-r-[#22c55e]'
 											: 'bg-[#fee2e2] border-l-3 border-l-[#dc2626] border-r-3 border-r-[#dc2626]'

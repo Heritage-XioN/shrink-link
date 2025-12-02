@@ -67,18 +67,20 @@ export const handlelogin = async (
 	state: formState | undefined,
 	formData: login
 ): Promise<formState> => {
+	const data = new FormData()
+	data.append("username",formData.username)
+	data.append('password', formData.password);
+	console.log(data);
 	const config = {
-		url: '/auth/register',
+		url: '/auth/login',
 		method: 'post',
-		data: formData,
-		headers: {
-			'content-type': 'application/json',
-		},
+		data: data,
 	};
 
 	try {
 		const api = axioInstance(config);
 		const res = await api;
+		console.log(res.data);
 		return {
 			status: 'success',
 			message: res.data.status,
