@@ -1,9 +1,24 @@
+import { fetchLinks } from '@/actions/links';
 import ShortenUrl from '@/components/shortenUrl';
 import ShortUrls from '@/components/shortUrls';
 
-import React from 'react';
+type formState = {
+	data: [
+		{
+			id: number;
+			original_url: string;
+			short_url: string;
+			clicks: number;
+			created_at: string;
+		}
+	];
+};
 
-const Page = () => {
+const Page = async () => {
+	const links = await fetchLinks()
+	const data = links.data.map((item) => {
+		return <ShortUrls key={item.id} {...item} />;
+	});
 	return (
 		<div>
 			<ShortenUrl
@@ -11,7 +26,7 @@ const Page = () => {
 				placeholder='https://example.com/very/long/url'
 				buttonText='Shorten URL'
 			/>
-			<ShortUrls />
+			{data}
 		</div>
 	);
 };

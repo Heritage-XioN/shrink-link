@@ -25,7 +25,7 @@ import Link from 'next/link';
 import { InputGroup, InputGroupAddon, InputGroupInput } from './ui/input-group';
 import { Eye, EyeOff } from 'lucide-react';
 import React, { startTransition, useActionState } from 'react';
-import { handleSignup } from '@/lib/actions/auth';
+import { handleSignup } from '@/actions/auth';
 
 export function SignupForm({
 	className,

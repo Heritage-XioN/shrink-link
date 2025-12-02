@@ -1,6 +1,8 @@
 'use server';
 import axios from 'axios';
-import { axioInstance } from '../axiosInstance';
+import { axioInstance } from '../lib/axiosInstance';
+import { getSession } from '@/lib/session';
+import { redirect } from 'next/navigation';
 
 type signup = {
 	email: string;
@@ -67,10 +69,9 @@ export const handlelogin = async (
 	state: formState | undefined,
 	formData: login
 ): Promise<formState> => {
-	const data = new FormData()
-	data.append("username",formData.username)
+	const data = new FormData();
+	data.append('username', formData.username);
 	data.append('password', formData.password);
-	console.log(data);
 	const config = {
 		url: '/auth/login',
 		method: 'post',
@@ -80,11 +81,14 @@ export const handlelogin = async (
 	try {
 		const api = axioInstance(config);
 		const res = await api;
-		console.log(res.data);
-		return {
-			status: 'success',
-			message: res.data.status,
-		};
+
+		const session = await getSession();
+		session.isLoggedin = true;
+		session.token = res.data.access_token;
+		session.tokenType = res.data.token_type;
+		await session.save();
+		console.log(session)
+		
 	} catch (error) {
 		if (axios.isAxiosError(error)) {
 			// Axios-specific error
@@ -109,4 +113,13 @@ export const handlelogin = async (
 			};
 		}
 	}
+	const session = await getSession();
+	if(session.token){
+		console.log("second")
+		redirect('/dashboard');
+	}
+	return {
+		status: 'success',
+		message: 'success',
+	};
 };

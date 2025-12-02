@@ -26,7 +26,7 @@ import { formSchema, loginSchema } from '@/lib/validation';
 import { Eye, EyeOff } from 'lucide-react';
 import { InputGroup, InputGroupAddon, InputGroupInput } from './ui/input-group';
 import { startTransition, useActionState } from 'react';
-import { handlelogin } from '@/lib/actions/auth';
+import { handlelogin } from '@/actions/auth';
 
 export function LoginForm({
 	className,
@@ -45,10 +45,7 @@ export function LoginForm({
 		setisVisible((prev) => (prev = !isVisible));
 	};
 
-	const [state, formAction, isPending] = useActionState(
-		handlelogin,
-		undefined
-	);
+	const [state, formAction, isPending] = useActionState(handlelogin, undefined);
 
 	return (
 		<div className={cn('flex flex-col gap-6', className)} {...props}>

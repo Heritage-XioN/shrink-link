@@ -2,8 +2,8 @@
 import { Copy } from 'lucide-react';
 import React from 'react';
 
-const CopyIcon: React.FC = () => {
-	const textToShare = 'Hello! Check out https://example.com';
+const CopyIcon = ({url}: {url: string}) => {
+	const textToShare = url;
 
 	const handleCopy = async () => {
 		try {

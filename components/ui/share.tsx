@@ -2,16 +2,16 @@
 import { Share2 } from 'lucide-react';
 import React from 'react';
 
-const ShareIcon: React.FC = () => {
-	const textToShare = 'Hello! Check out https://example.com';
+const ShareIcon = ({url}: {url: string}) => {
+	const textToShare = url;
 
 	const handleShare = async () => {
 		if (navigator.share) {
 			try {
 				await navigator.share({
-					title: 'Sharing Example',
+					title: `Sharing ${textToShare}`,
 					text: textToShare,
-					url: 'https://example.com',
+					url: textToShare,
 				});
 				console.log('Content shared successfully!');
 			} catch (err) {
