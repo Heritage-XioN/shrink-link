@@ -1,27 +1,54 @@
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+'use client';
+import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Controller, useForm } from 'react-hook-form';
+import * as z from 'zod';
+import { formSchema } from '@/lib/validation';
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+	Card,
+	CardContent,
+	CardDescription,
+	CardHeader,
+	CardTitle,
+} from '@/components/ui/card';
 import {
-  Field,
-  FieldDescription,
-  FieldGroup,
-  FieldLabel,
-  FieldSeparator,
-} from "@/components/ui/field"
-import { Input } from "@/components/ui/input"
-import Link from "next/link"
+	Field,
+	FieldDescription,
+	FieldError,
+	FieldGroup,
+	FieldLabel,
+	FieldSeparator,
+} from '@/components/ui/field';
+import { Input } from '@/components/ui/input';
+import Link from 'next/link';
+import { InputGroup, InputGroupAddon, InputGroupInput } from './ui/input-group';
+import { Eye, EyeOff } from 'lucide-react';
+import React, { startTransition, useActionState } from 'react';
+import { handleSignup } from '@/lib/actions/auth';
 
 export function SignupForm({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
-  return (
+	className,
+	...props
+}: React.ComponentProps<'div'>) {
+	const form = useForm<z.infer<typeof formSchema>>({
+		resolver: zodResolver(formSchema),
+		defaultValues: {
+			email: '',
+			password: '',
+		},
+	});
+
+	const [isVisible, setisVisible] = React.useState(false);
+	const onClick: React.MouseEventHandler<HTMLButtonElement> = (event) => {
+		setisVisible((prev) => (prev = !isVisible));
+	};
+
+	const [state, formAction, isPending] = useActionState(
+		handleSignup,
+		undefined
+	);
+	return (
 		<div className={cn('flex flex-col gap-6', className)} {...props}>
 			<Card>
 				<CardHeader className='text-center'>
@@ -33,7 +60,14 @@ export function SignupForm({
 					</CardDescription>
 				</CardHeader>
 				<CardContent>
-					<form>
+					<form
+						id='signup'
+						onSubmit={form.handleSubmit((data) => {
+							startTransition(() => {
+								formAction(data);
+							});
+						})}
+					>
 						<FieldGroup>
 							<Field>
 								<Button
@@ -68,49 +102,78 @@ export function SignupForm({
 									Or continue with
 								</span>
 							</FieldSeparator>
-							<Field>
-								<FieldLabel htmlFor='email'>Email</FieldLabel>
-								<Input
-									id='email'
-									type='email'
-									placeholder='m@example.com'
-									className='focus'
-									required
-								/>
-							</Field>
-							<Field>
-								<Field className='grid grid-cols-2 gap-4'>
-									<Field>
+							{state && (
+								<div
+									className={`mt-4 text-center font-semibold ${
+										state.status === 'success'
+											? 'bg-[#dcfce7] border-l-3 border-l-[#22c55e] border-r-3 border-r-[#22c55e]'
+											: 'bg-[#fee2e2] border-l-3 border-l-[#dc2626] border-r-3 border-r-[#dc2626]'
+									}`}
+								>
+									<p
+										className={`text-center text-[14px] font-semibold ${
+											state.status === 'success'
+												? 'text-[#22c55e]'
+												: 'text-[#dc2626]'
+										}`}
+									>
+										{state.message}
+									</p>
+								</div>
+							)}
+							<Controller
+								name='email'
+								control={form.control}
+								render={({ field, fieldState }) => (
+									<Field data-invalid={fieldState.invalid}>
+										<FieldLabel htmlFor='email'>Email</FieldLabel>
+										<Input
+											{...field}
+											id='email'
+											aria-invalid={fieldState.invalid}
+											type='email'
+											placeholder='m@example.com'
+											className='focus'
+										/>
+										{fieldState.invalid && (
+											<FieldError errors={[fieldState.error]} />
+										)}
+									</Field>
+								)}
+							/>
+							<Controller
+								name='password'
+								control={form.control}
+								render={({ field, fieldState }) => (
+									<Field data-invalid={fieldState.invalid}>
 										<FieldLabel htmlFor='password'>Password</FieldLabel>
-										<Input
-											id='password'
-											type='password'
-											className='focus'
-											required
-										/>
+										<InputGroup className='focus'>
+											<InputGroupInput
+												{...field}
+												id='password'
+												aria-invalid={fieldState.invalid}
+												type={isVisible ? 'text' : 'password'}
+												placeholder='Pass123@example'
+											/>
+											<InputGroupAddon className='' align='inline-end'>
+												<button onClick={onClick}>
+													{isVisible ? <Eye /> : <EyeOff />}
+												</button>
+											</InputGroupAddon>
+										</InputGroup>
+										{fieldState.invalid && (
+											<FieldError errors={[fieldState.error]} />
+										)}
 									</Field>
-									<Field>
-										<FieldLabel htmlFor='confirm-password'>
-											Confirm Password
-										</FieldLabel>
-										<Input
-											id='confirm-password'
-											className='focus'
-											type='password'
-											required
-										/>
-									</Field>
-								</Field>
-								<FieldDescription>
-									Must be at least 8 characters long.
-								</FieldDescription>
-							</Field>
+								)}
+							/>
 							<Field>
 								<Button
 									type='submit'
 									className='hover:bg-[#A667E4FF] bg-[#A667E4FF] cursor-pointer'
+									disabled={isPending}
 								>
-									Create Account
+									{isPending ? 'Creating...' : 'Create Account'}
 								</Button>
 								<FieldDescription className='text-center'>
 									Already have an account?{' '}

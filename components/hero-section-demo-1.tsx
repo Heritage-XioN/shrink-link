@@ -91,7 +91,7 @@ export default function HeroSectionOne() {
 					>
 						<Link
 							href={'/auth/signup'}
-							className='vibrate-1 w-60 transform rounded-lg bg-[#A667E4FF] px-6 py-2 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 gradient dark:bg-white dark:text-black dark:hover:bg-gray-200 text-center'
+							className='vibrate-1 w-60 transform rounded-lg bg-[#A667E4FF] px-6 py-2 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 dark:bg-white dark:text-black dark:hover:bg-gray-200 text-center'
 						>
 							Explore Now
 						</Link>

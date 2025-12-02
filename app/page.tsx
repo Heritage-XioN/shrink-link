@@ -1,4 +1,3 @@
-"use cache"
 import HeroSectionOne from "@/components/hero-section-demo-1";
 import Footer from "@/components/ui/footer";
 import Navbar from "@/components/ui/navbar";
