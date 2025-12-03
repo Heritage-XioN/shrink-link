@@ -30,3 +30,8 @@ export const loginSchema = z.object({
 			'Password must contain at least one special character'
 		),
 });
+
+export const UrlSchema = z.object({
+	original_url: z.url(),
+});
+

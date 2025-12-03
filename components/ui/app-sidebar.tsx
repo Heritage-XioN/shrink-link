@@ -14,6 +14,7 @@ import {
 	SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import Logo from './logo';
+import { FetchAllLinks } from '@/actions/links';
 
 
 // Menu items.
@@ -65,13 +66,6 @@ export function AppSidebar() {
 											<span>{item.title}</span>
 										</Link>
 									</SidebarMenuButton>
-									{item.title === 'My Links' ? (
-										<SidebarMenuBadge className='text-[#A667E4FF] font-bold hover:active:text-[#A667E4FF] hover:text-[#A667E4FF] hover:active:bg-[#E9D7FFFF] hover:bg-[#E9D7FFFF] '>
-											<p className='text-[#A667E4FF] font-bold hover:active:text-[#A667E4FF] hover:text-[#A667E4FF] hover:active:bg-[#E9D7FFFF] hover:bg-[#E9D7FFFF] '>
-												24
-											</p>
-										</SidebarMenuBadge>
-									) : null}
 								</SidebarMenuItem>
 							))}
 						</SidebarMenu>

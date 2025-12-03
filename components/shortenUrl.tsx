@@ -1,6 +1,13 @@
-import { Field, FieldGroup } from '@/components/ui/field';
+'use client';
+import { Field, FieldError, FieldGroup } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { Button } from './ui/button';
+import { startTransition, useActionState } from 'react';
+import { shortenurl } from '@/actions/links';
+import * as z from 'zod';
+import { formSchema, UrlSchema } from '@/lib/validation';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Controller, useForm } from 'react-hook-form';
 
 interface ShortenUrlProps {
 	header?: string;
@@ -9,6 +16,14 @@ interface ShortenUrlProps {
 }
 
 const ShortenUrl = ({ header, placeholder, buttonText }: ShortenUrlProps) => {
+	const form = useForm<z.infer<typeof UrlSchema>>({
+		resolver: zodResolver(UrlSchema),
+		defaultValues: {
+			original_url: '',
+		},
+	});
+
+	const [state, formAction, isPending] = useActionState(shortenurl, undefined);
 	return (
 		<div className='flex justify-center items-center mb-12 mt-4'>
 			<div className='md:hidden w-full shadow rounded-2xl px-8 py-12'>
@@ -18,23 +33,46 @@ const ShortenUrl = ({ header, placeholder, buttonText }: ShortenUrlProps) => {
 					</h1>
 				</div>
 				<div className='flex flex-row justify-center items-center'>
-					<form className='w-full'>
+					<form
+						className='w-full'
+						onSubmit={form.handleSubmit((data) => {
+							startTransition(() => {
+								formAction(data);
+							});
+						})}
+					>
 						<FieldGroup className='flex'>
-							<Field className='grow shrink basis-auto'>
-								<Input
-									id='email'
-									type='text'
-									placeholder={placeholder}
-									className='focus'
-									required
-								/>
-								<Button
-									type='submit'
-									className='hover:bg-[#A667E4FF] bg-[#A667E4FF] cursor-pointer'
-								>
-									{buttonText}
-								</Button>
-							</Field>
+							<Controller
+								name='original_url'
+								control={form.control}
+								render={({ field, fieldState }) => (
+									<Field
+										data-invalid={fieldState.invalid}
+										className='grow shrink basis-auto'
+									>
+										<Input
+											{...field}
+											id='url'
+											aria-invalid={fieldState.invalid}
+											type='text'
+											placeholder={placeholder}
+											className='focus'
+										/>
+										{fieldState.invalid && (
+											<FieldError
+												className='grow shrink basis-auto text-center'
+												errors={[fieldState.error]}
+											/>
+										)}
+										<Button
+											type='submit'
+											className='hover:bg-[#A667E4FF] bg-[#A667E4FF] cursor-pointer'
+										>
+											{buttonText}
+										</Button>
+									</Field>
+								)}
+							/>
 						</FieldGroup>
 					</form>
 				</div>
@@ -46,26 +84,51 @@ const ShortenUrl = ({ header, placeholder, buttonText }: ShortenUrlProps) => {
 					</h1>
 				</div>
 				<div className='flex flex-row justify-center items-center'>
-					<form className='w-full'>
+					<form
+						className='w-full'
+						onSubmit={form.handleSubmit((data) => {
+							startTransition(() => {
+								formAction(data);
+								form.reset();
+							});
+						})}
+					>
 						<FieldGroup className='flex'>
-							<Field
-								className='grow shrink basis-auto'
-								orientation={'horizontal'}
-							>
-								<Input
-									id='email'
-									type='text'
-									placeholder={placeholder}
-									className='focus'
-									required
-								/>
-								<Button
-									type='submit'
-									className='hover:bg-[#A667E4FF] bg-[#A667E4FF] cursor-pointer'
-								>
-									{buttonText}
-								</Button>
-							</Field>
+							<Controller
+								name='original_url'
+								control={form.control}
+								render={({ field, fieldState }) => (
+									<Field
+										data-invalid={fieldState.invalid}
+										className='grow shrink basis-full flex-col flex'
+										orientation={'horizontal'}
+									>
+										<div className='grow shrink basis-full flex w-full gap-4'>
+											<Input
+												{...field}
+												id='url'
+												aria-invalid={fieldState.invalid}
+												type='text'
+												placeholder={placeholder}
+												className='focus '
+											/>
+											<Button
+												type='submit'
+												className='hover:bg-[#A667E4FF] bg-[#A667E4FF] cursor-pointer'
+												disabled={isPending}
+											>
+												{buttonText}
+											</Button>
+										</div>
+										{fieldState.invalid && (
+											<FieldError
+												className='grow shrink basis-auto'
+												errors={[fieldState.error]}
+											/>
+										)}
+									</Field>
+								)}
+							/>
 						</FieldGroup>
 					</form>
 				</div>

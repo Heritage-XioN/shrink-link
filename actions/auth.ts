@@ -3,21 +3,8 @@ import axios from 'axios';
 import { axioInstance } from '../lib/axiosInstance';
 import { getSession } from '@/lib/session';
 import { redirect } from 'next/navigation';
+import { formState, login, signup } from '@/lib/types';
 
-type signup = {
-	email: string;
-	password: string;
-};
-
-type login = {
-	username: string;
-	password: string;
-};
-
-type formState = {
-	status: 'success' | 'error';
-	message: string;
-};
 
 export const handleSignup = async (
 	state: formState | undefined,
@@ -31,14 +18,10 @@ export const handleSignup = async (
 			'content-type': 'application/json',
 		},
 	};
-
+	let res;
 	try {
 		const api = axioInstance(config);
-		const res = await api;
-		return {
-			status: 'success',
-			message: res.data.status,
-		};
+		res = await api;
 	} catch (error) {
 		if (axios.isAxiosError(error)) {
 			// Axios-specific error
@@ -63,6 +46,13 @@ export const handleSignup = async (
 			};
 		}
 	}
+	if (res.data.status === 'success') {
+		redirect('/auth/login');
+	}
+	return {
+		status: 'success',
+		message: 'success',
+	};
 };
 
 export const handlelogin = async (
@@ -77,10 +67,10 @@ export const handlelogin = async (
 		method: 'post',
 		data: data,
 	};
-
+	let res;
 	try {
 		const api = axioInstance(config);
-		const res = await api;
+		res = await api;
 
 		const session = await getSession();
 		session.isLoggedin = true;

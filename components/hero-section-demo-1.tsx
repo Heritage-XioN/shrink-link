@@ -91,42 +91,16 @@ export default function HeroSectionOne() {
 					>
 						<Link
 							href={'/auth/signup'}
-							className='vibrate-1 w-60 transform rounded-lg bg-[#A667E4FF] px-6 py-2 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 dark:bg-white dark:text-black dark:hover:bg-gray-200 text-center'
+							className='vibrate-1 w-96 transform rounded-lg bg-[#A667E4FF] px-6 py-2 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 dark:bg-white dark:text-black dark:hover:bg-gray-200 text-center'
 						>
 							Explore Now
 						</Link>
-						<button className='w-60 transform rounded-lg border border-gray-300 bg-white px-6 py-2 font-medium text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 dark:border-gray-700 dark:bg-black dark:text-white dark:hover:bg-gray-900'>
+						<button className='w-96 transform rounded-lg border border-gray-300 bg-white px-6 py-2 font-medium text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 dark:border-gray-700 dark:bg-black dark:text-white dark:hover:bg-gray-900'>
 							Contact Us
 						</button>
 					</motion.div>
 				</div>
-				<div className='md:grow md:shrink md:basis-auto md:w-1/2'>
-					<motion.div
-						initial={{
-							opacity: 0,
-							y: 10,
-						}}
-						animate={{
-							opacity: 1,
-							y: 0,
-						}}
-						transition={{
-							duration: 0.3,
-							delay: 1.2,
-						}}
-						className='relative z-10 mt-5 lg:mt-0 rounded-3xl bg-neutral-100 shadow-md dark:bg-neutral-900'
-					>
-						<div className='w-full overflow-hidden rounded-xl'>
-							<Image
-								src='https://res.cloudinary.com/ddg2pxgz0/image/upload/v1764252875/A_modern_tech-themed_cnayl3.png'
-								alt='A_modern_tech-themed_cnayl3.png'
-								className=' h-auto w-full object-contain'
-								height={1000}
-								width={1000}
-							/>
-						</div>
-					</motion.div>
-				</div>
+				
 			</div>
 		</div>
 	);
