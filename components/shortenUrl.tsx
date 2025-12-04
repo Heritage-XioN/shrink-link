@@ -5,7 +5,7 @@ import { Button } from './ui/button';
 import { startTransition, useActionState } from 'react';
 import { shortenurl } from '@/actions/links';
 import * as z from 'zod';
-import { formSchema, UrlSchema } from '@/lib/validation';
+import { UrlSchema } from '@/lib/validation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
 
