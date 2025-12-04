@@ -1,20 +1,20 @@
 import 'server-only';
+import dotenv from "dotenv"
 import { getIronSession } from 'iron-session';
 import { cookies } from 'next/headers';
 import { SessionData } from './types';
-
+dotenv.config()
 
 
 
 const sessionOptions = {
-	password: (process.env.RAND_KEY =
-		'+Kc5Rwx/vxui9IcvebnkWAxGDCpvEEOv8UdeYsTlMRw='), //run openssl rand -base64 32 to generate a random pasaword
+	password: process.env.RAND_KEY as string, //run openssl rand -base64 32 to generate a random pasaword
 	cookieName: 'session',
 	cookieOptions: {
-		httpOnly: process.env.COOKIE_HTTP_ONLY === 'true',
+		httpOnly: process.env.COOKIE_HTTP_ONLY ,
 		secure: process.env.NODE_ENV === 'production',
 		sameSite: process.env.COOKIE_SAME_SITE as 'lax' | 'strict' | 'none',
-		maxAge: Number(process.env.COOKIE_MAX_AGE ?? 60 * 60 * 24 * 7),
+		maxAge: Number(process.env.COOKIE_MAX_AGE),
 	},
 };
 
