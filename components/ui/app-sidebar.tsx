@@ -9,13 +9,10 @@ import {
 	SidebarGroupContent,
 	SidebarGroupLabel,
 	SidebarMenu,
-	SidebarMenuBadge,
 	SidebarMenuButton,
 	SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import Logo from './logo';
-import { FetchAllLinks } from '@/actions/links';
-import { destroySession } from '@/lib/session';
 import { handleLogout } from '@/actions/auth';
 
 // Menu items.

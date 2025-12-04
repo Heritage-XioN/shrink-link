@@ -5,7 +5,7 @@ import { destroySession, getSession } from '@/lib/session';
 import { redirect } from 'next/navigation';
 import { formState, login, signup } from '@/lib/types';
 
-
+// handles logout
 export async function handleLogout() {
 	await destroySession();
 	redirect('/auth/login');

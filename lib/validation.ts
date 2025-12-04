@@ -1,6 +1,7 @@
 import * as z from 'zod';
 
-export const formSchema = z.object({
+// form validation schema for signup
+export const signupSchema = z.object({
 	email: z.email('Invalid email address'),
 	password: z
 		.string()
@@ -15,7 +16,7 @@ export const formSchema = z.object({
 		),
 });
 
-
+// form validation schema for login
 export const loginSchema = z.object({
 	username: z.email('Invalid email address'),
 	password: z
@@ -31,6 +32,7 @@ export const loginSchema = z.object({
 		),
 });
 
+// form validation schema for shortening a url
 export const UrlSchema = z.object({
 	original_url: z.url(),
 });

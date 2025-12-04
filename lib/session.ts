@@ -18,21 +18,12 @@ const sessionOptions = {
 	},
 };
 
-export const defaultSession = {
-	isLoggedin: false,
-};
-
 //handles creating the session
 export async function getSession() {
 	const session = await getIronSession<SessionData>(
 		await cookies(),
 		sessionOptions
 	);
-
-	// if(!session.isLoggedin){
-	//   session.isLoggedin = defaultSession.isLoggedin
-	// }
-
 	return session;
 }
 

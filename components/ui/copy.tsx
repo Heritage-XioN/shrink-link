@@ -1,5 +1,5 @@
 'use client';
-import { Copy } from 'lucide-react';
+import { Copy, Check } from 'lucide-react';
 import React from 'react';
 
 const CopyIcon = ({url}: {url: string}) => {
@@ -8,7 +8,6 @@ const CopyIcon = ({url}: {url: string}) => {
 	const handleCopy = async () => {
 		try {
 			await navigator.clipboard.writeText(textToShare);
-			alert('Copied to clipboard!');
 		} catch (err) {
 			console.error('Failed to copy:', err);
 		}

@@ -1,21 +1,12 @@
 import { fetchLinks } from '@/actions/links';
 import ShortenUrl from '@/components/shortenUrl';
 import ShortUrls from '@/components/shortUrls';
-
-type formState = {
-	data: [
-		{
-			id: number;
-			original_url: string;
-			short_url: string;
-			clicks: number;
-			created_at: string;
-		}
-	];
-};
+import { verifySession } from '@/lib/dal';
 
 const Page = async () => {
-	const links = await fetchLinks()
+	// extra check for making sure user is logged in
+	verifySession();
+	const links = await fetchLinks();
 
 	if (!links?.data) {
 		return (
@@ -25,8 +16,19 @@ const Page = async () => {
 					placeholder='https://example.com/very/long/url'
 					buttonText='Shorten URL'
 				/>
-				<div className="w-full mb-6">
-					<p className="text-center font-semibold"> No links avaliable yet pls shorten</p>
+				<div className='mt-8'>
+					<div className='flex flex-wrap w-full gap-2'>
+						<div className='grow shrink basis-auto flex flex-wrap justify-center items-center mb-4 w-full'>
+							<h1 className='text-[30px] leading-9 font-bold text-[#171A1FFF] text-center'>
+								My Shortened Links
+							</h1>
+						</div>
+						<div className='w-full mb-6'>
+							<p className='text-center font-semibold'>
+								No links avaliable yet pls shorten
+							</p>
+						</div>
+					</div>
 				</div>
 			</div>
 		);

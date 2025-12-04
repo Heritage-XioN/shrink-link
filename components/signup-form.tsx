@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
 import * as z from 'zod';
-import { formSchema } from '@/lib/validation';
+import { signupSchema } from '@/lib/validation';
 import {
 	Card,
 	CardContent,
@@ -31,8 +31,8 @@ export function SignupForm({
 	className,
 	...props
 }: React.ComponentProps<'div'>) {
-	const form = useForm<z.infer<typeof formSchema>>({
-		resolver: zodResolver(formSchema),
+	const form = useForm<z.infer<typeof signupSchema>>({
+		resolver: zodResolver(signupSchema),
 		defaultValues: {
 			email: '',
 			password: '',

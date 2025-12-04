@@ -7,7 +7,6 @@ const publicRoutes = [
 	'/auth/login',
 	'/auth/signup',
 	'/',
-	'/auth/otp',
 	'/auth/forgot-password',
 ];
 
@@ -21,14 +20,14 @@ export default async function proxy(req: NextRequest) {
 	const session = await getSession();
 
 	// 4. Redirect to /login if the user is not authenticated
-	if (isProtectedRoute && !session?.token) {
+	if (isProtectedRoute && !session?.isLoggedin) {
 		return NextResponse.redirect(new URL('/auth/login', req.nextUrl));
 	}
 
 	// 5. Redirect to /dashboard if the user is authenticated
 	if (
 		isPublicRoute &&
-		session?.token &&
+		session?.isLoggedin &&
 		!req.nextUrl.pathname.startsWith('/dashboard')
 	) {
 		return NextResponse.redirect(new URL('/dashboard', req.nextUrl));
@@ -37,7 +36,7 @@ export default async function proxy(req: NextRequest) {
 	return NextResponse.next();
 }
 
-// Routes Middleware should not run on
+// Routes proxy should not run on
 export const config = {
 	matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)'],
 };

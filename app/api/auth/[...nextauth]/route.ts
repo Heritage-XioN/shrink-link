@@ -15,6 +15,7 @@ type formState = {
 	message: string;
 };
 
+//TODO: implement social login
 export const authOptions = {
 	providers: [
 		GoogleProvider({

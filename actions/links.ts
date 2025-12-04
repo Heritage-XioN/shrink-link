@@ -1,13 +1,15 @@
 'use server';
-import axios from 'axios';
 import { axioInstance } from '../lib/axiosInstance';
 import { getSession } from '@/lib/session';
 import { revalidatePath } from 'next/cache';
 import { shortenState, url, urlsState } from '@/lib/types';
+import { dataErrorHandler, errorHandler } from '@/lib/error';
 
-
+// handles api call for getting the last 3 shortened urls
 export const fetchLinks = async (): Promise<urlsState> => {
+	// handles getting the session object
 	const session = await getSession();
+	// request config
 	const config = {
 		url: '/url',
 		method: 'get',
@@ -16,16 +18,24 @@ export const fetchLinks = async (): Promise<urlsState> => {
 			'content-type': 'application/json',
 		},
 	};
-	const api = axioInstance(config);
-	const res = await api;
+	let res;
+	try {
+		// api call
+		const api = axioInstance(config);
+		res = await api;
+	} catch (error) {
+		return dataErrorHandler(error);
+	}
 	return {
 		data: res.data,
 	};
 };
 
-
+//handles handles api call for getting all the shortened urls
 export const FetchAllLinks = async (): Promise<urlsState> => {
+	// handles getting the session object
 	const session = await getSession();
+	// request config
 	const config = {
 		url: `/url/all`,
 		method: 'get',
@@ -34,19 +44,27 @@ export const FetchAllLinks = async (): Promise<urlsState> => {
 			'content-type': 'application/json',
 		},
 	};
-	const api = axioInstance(config);
-	const res = await api;
+	let res;
+	try {
+		// api call
+		const api = axioInstance(config);
+		res = await api;
+	} catch (error) {
+		return dataErrorHandler(error);
+	}
 	return {
-		data: res.data,
+		data: res?.data,
 	};
 };
 
-
+// handles api call for shortening the url
 export const shortenurl = async (
 	state: shortenState | undefined,
 	formData: url
 ): Promise<shortenState> => {
+	// handles getting the session object
 	const session = await getSession();
+	// request config
 	const config = {
 		url: '/url',
 		method: 'post',
@@ -58,41 +76,16 @@ export const shortenurl = async (
 	};
 	let res;
 	try {
+		// api call
 		const api = axioInstance(config);
 		res = await api;
 	} catch (error) {
-		if (axios.isAxiosError(error)) {
-			// Axios-specific error
-			console.error('Axios error:', error.response?.data || 'g');
-			return {
-				status: 'error',
-				message:
-					error.response?.data?.detail ||
-					'Unexpected error pls make sure your connected to the internet',
-			};
-		} else if (error instanceof Error) {
-			console.error('General error:', error.message);
-			return {
-				status: 'error',
-				message: `internal error: ${error.message}`,
-			};
-		} else {
-			console.error('Unexpected error:', error);
-			return {
-				status: 'error',
-				message: `internal error: ${error}`,
-			};
-		}
+		return errorHandler(error);
 	}
-	revalidatePath("/dasboard")
-	return res
-		? {
-				status: 'success',
-				message: 'success',
-		  }
-		: {
-				status: 'error',
-				message: 'unexpected error',
-		  };
+	// handles revalidating the specified path to get up to date data
+	revalidatePath('/dasboard');
+	return {
+		status: 'success',
+		message: res.data?.status,
+	};
 };
-

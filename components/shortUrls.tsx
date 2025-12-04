@@ -32,7 +32,7 @@ const ShortUrls = ({
 					<h1 className='text-[16px] leading-7 font-bold '>Original URL</h1>
 				</div>
 				<div className='grow shrink basis-full'>
-					<p className='text-[14px] leading-6 font-normal text-[#6B7280FF] word-break break-all line-clamp-2'>
+					<p className='text-[14px] leading-6 font-normal text-[#6B7280FF] word-break break-all line-clamp-2 h-12'>
 						{original_url}
 					</p>
 				</div>
