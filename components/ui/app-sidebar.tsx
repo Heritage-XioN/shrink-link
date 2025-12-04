@@ -1,6 +1,6 @@
-"use client"
+'use client';
 import { Home, Link as NextLink, LogOut } from 'lucide-react';
-import Link from "next/link";
+import Link from 'next/link';
 
 import {
 	Sidebar,
@@ -15,7 +15,8 @@ import {
 } from '@/components/ui/sidebar';
 import Logo from './logo';
 import { FetchAllLinks } from '@/actions/links';
-
+import { destroySession } from '@/lib/session';
+import { handleLogout } from '@/actions/auth';
 
 // Menu items.
 const items = [
@@ -28,11 +29,6 @@ const items = [
 		title: 'My Links',
 		url: '/dashboard/my-links',
 		icon: NextLink,
-	},
-	{
-		title: 'Log out',
-		url: '#',
-		icon: LogOut,
 	},
 ];
 
@@ -66,8 +62,35 @@ export function AppSidebar() {
 											<span>{item.title}</span>
 										</Link>
 									</SidebarMenuButton>
+									<SidebarMenuButton
+										asChild
+										className={`hover:active:text-[#A667E4FF] hover:text-[#A667E4FF] hover:active:bg-[#E9D7FFFF] hover:bg-[#E9D7FFFF]`}
+									></SidebarMenuButton>
 								</SidebarMenuItem>
 							))}
+							<form action={handleLogout}>
+								<SidebarMenuItem
+									className='text-[#A667E4FF] font-bold'
+									key={'Log out'}
+								>
+									<SidebarMenuButton
+										asChild
+										className={`hover:active:text-[#A667E4FF] hover:text-[#A667E4FF] hover:active:bg-[#E9D7FFFF] hover:bg-[#E9D7FFFF]`}
+									>
+										<button
+											className={`hover:active:text-[#A667E4FF] hover:text-[#A667E4FF] hover:active:bg-[#E9D7FFFF] hover:bg-[#E9D7FFFF]`}
+											type='submit'
+										>
+											<LogOut />
+											<span>{'Log out'}</span>
+										</button>
+									</SidebarMenuButton>
+									<SidebarMenuButton
+										asChild
+										className={`hover:active:text-[#A667E4FF] hover:text-[#A667E4FF] hover:active:bg-[#E9D7FFFF] hover:bg-[#E9D7FFFF]`}
+									></SidebarMenuButton>
+								</SidebarMenuItem>
+							</form>
 						</SidebarMenu>
 					</SidebarGroupContent>
 				</SidebarGroup>
